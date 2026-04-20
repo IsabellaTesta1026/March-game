@@ -37,6 +37,69 @@ FILES = [
     ('scene-context-5.mp3', "Today, you have been assigned to the fire hose unit at Kelly Ingram Park."),
     ('scene-context-6.mp3', "The march is coming."),
 
+    # ── Round 1 setup beats ───────────────────────────────────────────────────
+    ('scene-r1-0.mp3', "You stand, one of thirty officers. The march will be met at Kelly Ingram Park. Dispersal is the goal."),
+    ('scene-r1-1.mp3', "You have been assigned to the fire hose unit."),
+    ('scene-r1-2.mp3', 'The officer next to you says quietly: "I heard some of them are real young."'),
+
+    # ── Round 2 setup beats ───────────────────────────────────────────────────
+    ('scene-r2-0.mp3', "The first thing you notice is the singing, hundreds of the city's youth are fearlessly walking toward your line. The youngest ones are near the front. A girl, maybe eight, is looking directly at you."),
+    ('scene-r2-1.mp3', 'YOU: "What do you want?"'),
+    ('scene-r2-2.mp3', 'Her gaze intense, she answers: "Fee-dom." She can\'t even pronounce it, but she knows.'),
+    ('scene-r2-3.mp3', "A national news photographer is six feet away. Your face will be on tomorrow's paper."),
+    ('scene-r2-4.mp3', 'COMMANDER: "Turn on the fire hoses!"'),
+    ('scene-r2-5.mp3', "The pressure strips bark off trees. Children are knocked sideways."),
+
+    # ── Round 3 general setup beats ───────────────────────────────────────────
+    ('scene-r3_general-0.mp3', "Your commander is shouting, but the words are harder to make out over the chaos. Several police cruisers arrive\u2026"),
+    ('scene-r3_general-1.mp3', "And the vicious police dogs enter the scene."),
+    ('scene-r3_general-2.mp3', 'COMMANDER: "LOOK AT \'EM RUN! I want to see the dogs work!"'),
+    ('scene-r3_general-3.mp3', "Amidst the new wave of terror, you notice a group of children stand their ground, arms linked."),
+    ('scene-r3_general-4.mp3', "Some step forward, showing no fear. The GIRL is still there. An officer approaches her, the leashed dogs getting alarmingly close."),
+
+    # ── Round 3 strawberry setup beats ───────────────────────────────────────
+    ('scene-r3_strawberry-0.mp3', "The line is fractured now. Your commander is shouting, but the words are harder to make out over the chaos. Several police cruisers arrive\u2026"),
+    ('scene-r3_strawberry-1.mp3', "And the vicious police dogs enter the scene."),
+    ('scene-r3_strawberry-2.mp3', 'COMMANDER: "LOOK AT \'EM RUN! I want to see the dogs work!"'),
+    ('scene-r3_strawberry-3.mp3', "Amidst the new wave of terror, you notice a group of children stand their ground, arms linked."),
+    ('scene-r3_strawberry-4.mp3', "Some step forward, showing no fear. The GIRL is still there. An officer approaches her, the leashed dogs getting alarmingly close."),
+
+    # ── Round 4 general setup beats ───────────────────────────────────────────
+    ('scene-r4_general-0.mp3', "A whistle pierces through the noise. The order changes."),
+    ('scene-r4_general-1.mp3', 'COMMANDER: "MOVE IN. ARREST THEM."'),
+    ('scene-r4_general-2.mp3', "The line collapses into motion. Officers surge forward, grabbing children."),
+    ('scene-r4_general-3.mp3', 'COMMANDER: "KEEP THEM MOVING, NO MORE DELAYS!"'),
+    ('scene-r4_general-4.mp3', "Ahead, the school buses start filling fast."),
+    ('scene-r4_general-5.mp3', "A group of children stand their ground. Some step forward. You see her again, the girl."),
+    ('scene-r4_general-6.mp3', "You grab her, and she goes still, looking up at you. No fighting, no running, just waiting."),
+
+    # ── Round 4 strawberry setup beats ───────────────────────────────────────
+    ('scene-r4_strawberry-0.mp3', "A whistle pierces through the noise. The order changes."),
+    ('scene-r4_strawberry-1.mp3', 'COMMANDER: "MOVE IN. ARREST THEM."'),
+    ('scene-r4_strawberry-2.mp3', "The line collapses into motion. Officers surge forward, grabbing children. You're pushed forward with it, whether you're ready or not. Your arm burns with every movement."),
+    ('scene-r4_strawberry-3.mp3', "Ahead, the school buses start filling fast. You see her again. The girl."),
+    ('scene-r4_strawberry-4.mp3', "When you grab her, your injured arm falters. Your grip isn't as steady as it should be. She goes still, looking up at you. No fighting, no running, just waiting."),
+
+    # ── Round 5 general setup beats ───────────────────────────────────────────
+    ('scene-r5_general-0.mp3', "You finish the day. Your department has taken over 600 students to different jails, detention facilities, and local fairgrounds. The city's jails are filled to capacity, but the marches aren't stopping."),
+    ('scene-r5_general-1.mp3', "When you get home, the lights are dim. The TV flickers across the walls."),
+    ('scene-r5_general-2.mp3', "You hear it before you see it; water hitting pavement, dogs barking, shouting\u2026 singing."),
+    ('scene-r5_general-3.mp3', "You step into the room. Your kids sit on the floor, close to the screen."),
+    ('scene-r5_general-4.mp3', "The footage loops."),
+    ('scene-r5_general-5.mp3', "Children thrown back by hoses. Dogs lunging. Officers holding the line. You."),
+    ('scene-r5_general-6.mp3', '"Dad?" Your youngest looks up, "That\'s you."'),
+    ('scene-r5_general-7.mp3', "You nod."),
+    ('scene-r5_general-8.mp3', '"Why are you hurting them?" The question hangs. Orders\u2026 Duty\u2026 The law. None of it sounds right.'),
+    ('scene-r5_general-9.mp3', '"Are they bad?" Your older son asks.'),
+    ('scene-r5_general-10.mp3', 'They\'re children, you think, the only thing "wrong" is their skin.'),
+
+    # ── Straw/water R5 setup beats ─────────────────────────────────────────────
+    ('scene-straw_water_r5-0.mp3', "They process you in a back room at the station. Your own colleagues handle your paperwork in silence."),
+    ('scene-straw_water_r5-1.mp3', "Ben is in the next room. You can hear him through the wall."),
+    ('scene-straw_water_r5-2.mp3', "The officer who processes you sets the form down in front of you, still quiet. No one makes eye contact."),
+    ('scene-straw_water_r5-3.mp3', "You look down. Name. Badge number. Incident description."),
+    ('scene-straw_water_r5-4.mp3', "You pick up the pen."),
+
     # ── Round 1 reactions ─────────────────────────────────────────────────────
     ('reaction-r1-a-0.mp3', "You follow orders. That's your job. You've always done it and it's always been right."),
     ('reaction-r1-b-0.mp3', 'OFFICER: "Same thing, I guess."'),
@@ -195,10 +258,9 @@ FILES = [
     ('reaction-straw_water_r5-c-5.mp3', "When the door opens again, you expect to see your commander. Instead, it's a man you don't recognize; older, Black, in a suit. He doesn't sit down."),
     ('reaction-straw_water_r5-c-6.mp3', 'He sets a card on the table in front of you, "I\'m an attorney."'),
     ('reaction-straw_water_r5-c-7.mp3', 'ATTORNEY: "I\'ve been called in by the movement\'s legal team. I understand you helped children exit a vehicle today. You were injured doing it, and then arrested by your own department."'),
-    ('reaction-straw_water_r5-c-8.mp3', "A beat."),
-    ('reaction-straw_water_r5-c-9.mp3', 'ATTORNEY: "That\'s a story people will want to hear. If you want to tell me."'),
-    ('reaction-straw_water_r5-c-10.mp3', "He leaves the card on the table. He walks out."),
-    ('reaction-straw_water_r5-c-11.mp3', "You sit there. Your arm throbs. Ben is somewhere in this building. You pick up the card."),
+    ('reaction-straw_water_r5-c-8.mp3', 'ATTORNEY: "That\'s a story people will want to hear. If you want to tell me."'),
+    ('reaction-straw_water_r5-c-9.mp3', "He leaves the card on the table. He walks out."),
+    ('reaction-straw_water_r5-c-10.mp3', "You sit there. Your arm throbs. Ben is somewhere in this building. You pick up the card."),
 
     # ── Watermelon transition — bus rescue (from R4 general C) ─────────────────
     ('scene-watermelon_t-0.mp3',  "Your eyes frantically scan the chaos until they lock onto a school bus packed with children."),
@@ -230,9 +292,8 @@ FILES = [
     ('scene-watermelon_t-26.mp3', "You don't answer, you can't. You're still watching the gap where they got through. Ben is dragged down beside you. He's breathing hard."),
     ('scene-watermelon_t-27.mp3', '"Worth it?"'),
     ('scene-watermelon_t-28.mp3', "Boots surround you. A baton presses into your chest, holding you down."),
-    ('scene-watermelon_t-29.mp3', "A beat."),
-    ('scene-watermelon_t-30.mp3', 'COMMANDER: "Get them out of here."'),
-    ('scene-watermelon_t-31.mp3', "Your hands are forced behind your back."),
+    ('scene-watermelon_t-29.mp3', 'COMMANDER: "Get them out of here."'),
+    ('scene-watermelon_t-30.mp3', "Your hands are forced behind your back."),
 
     # ── Strawberry R4C transition — bus rescue with arm ────────────────────────
     ('scene-strawberry_r4c_t-0.mp3',  "Your eyes frantically scan the chaos until they lock onto a school bus packed with children."),
@@ -266,9 +327,8 @@ FILES = [
     ('scene-strawberry_r4c_t-28.mp3', "You don't answer, you can't. You're still watching the gap where they got through. Ben is dragged down beside you. He's breathing hard."),
     ('scene-strawberry_r4c_t-29.mp3', '"Worth it?"'),
     ('scene-strawberry_r4c_t-30.mp3', "Boots surround you. A baton presses into your chest, holding you down."),
-    ('scene-strawberry_r4c_t-31.mp3', "A beat."),
-    ('scene-strawberry_r4c_t-32.mp3', 'COMMANDER: "Get them out of here."'),
-    ('scene-strawberry_r4c_t-33.mp3', "Your hands are forced behind your back."),
+    ('scene-strawberry_r4c_t-31.mp3', 'COMMANDER: "Get them out of here."'),
+    ('scene-strawberry_r4c_t-32.mp3', "Your hands are forced behind your back."),
 ]
 
 

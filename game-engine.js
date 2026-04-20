@@ -19,6 +19,7 @@ let storyBeats      = [];   // array of paragraph strings (one per screen)
 let storyBeatIndex  = 0;
 let storyPageStart  = 0;    // index of first bubble on current page
 let storyNextScene  = null; // null → go to endReflection (ending type)
+let storyEndCallback = null; // if set, called on last beat instead of loadScene
 let storyIsEnding   = false;
 
 // ─── Reaction paging state ────────────────────────────────────────────────
@@ -137,8 +138,11 @@ function loadScene(sceneId) {
   if (scene.type === 'narrative' || scene.type === 'ending') {
     renderNarrativeView(scene);
   } else if (scene.type === 'choice') {
-    // Skip setup story screen — go straight to choices
-    renderChoiceView(scene);
+    if (scene.setup && scene.setup.length > 0) {
+      renderSetupView(scene);
+    } else {
+      renderChoiceView(scene);
+    }
   }
 }
 
@@ -166,9 +170,10 @@ function renderNarrativeView(scene) {
     }),
     1
   );
-  storyBeatIndex  = 0;
-  storyPageStart  = 0;
-  storyIsEnding   = scene.type === 'ending';
+  storyBeatIndex   = 0;
+  storyPageStart   = 0;
+  storyIsEnding    = scene.type === 'ending';
+  storyEndCallback = null;
   storyNextScene = storyIsEnding ? null : (scene.next || null);
 
   renderStoryBeat();
@@ -191,8 +196,15 @@ function renderStoryBeat() {
   const isLast = storyBeatIndex >= storyBeats.length - 1;
   if (isLast) {
     advBtn.onclick = () => {
-      if (storyIsEnding) showScreen('endReflection');
-      else loadScene(storyNextScene);
+      if (storyEndCallback) {
+        const cb = storyEndCallback;
+        storyEndCallback = null;
+        cb();
+      } else if (storyIsEnding) {
+        showScreen('endReflection');
+      } else {
+        loadScene(storyNextScene);
+      }
     };
   } else {
     advBtn.onclick = () => {
@@ -200,6 +212,23 @@ function renderStoryBeat() {
       renderStoryBeat();
     };
   }
+}
+
+// ─── Setup View (context beats before choice) ─────────────────────────────────
+function renderSetupView(scene) {
+  showGameView('story');
+  const roundLabel = $('story-round-label');
+  if (roundLabel) roundLabel.textContent = scene.title || '';
+  storyBeats = groupParagraphs(
+    scene.setup.filter(p => p.trim() !== ''),
+    1
+  );
+  storyBeatIndex  = 0;
+  storyPageStart  = 0;
+  storyIsEnding   = false;
+  storyNextScene  = null;
+  storyEndCallback = () => renderChoiceView(scene);
+  renderStoryBeat();
 }
 
 // ─── Choice View ──────────────────────────────────────────────────────────────
@@ -398,10 +427,20 @@ function renderBeatHTML(rawText) {
     return html;
   }
 
-  // 3. Standalone quoted line: "text"
+  // 3. Quote-first: "speech" narrative trailing  (e.g. "Are they bad?" Your son asks.)
+  const quoteFront = trimmed.match(/^"(.+?)"\s+(.+)$/);
+  if (quoteFront) {
+    const speech   = quoteFront[1].trim();
+    const trailing = quoteFront[2].trim();
+    const side     = /^you\b/i.test(trailing) ? 'right' : 'left';
+    return makeBubble(side, null, speech) + `<p class="beat-plain">${escapeAndFormat(trailing)}</p>`;
+  }
+
+  // 4. Standalone quoted line: "text"
   const standalone = trimmed.match(STANDALONE_QUOTE_RE);
   if (standalone) {
-    return makeBubble('left', null, standalone[1]);
+    const side = /^you\b/i.test(standalone[1]) ? 'right' : 'left';
+    return makeBubble(side, null, standalone[1]);
   }
 
   // 4. Plain narrative

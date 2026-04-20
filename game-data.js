@@ -242,7 +242,7 @@ const GAME_DATA = {
         letter: 'B',
         label: "Your eyes meet hers. You hesitate, and let go.",
         reactionHeader: "B: Your eyes meet hers. You hesitate, and let go.",
-        response: "For a second, she's free.\n\nThen another officer grabs her. He snaps at you: \"What do you think you're doing?\"\n\nYour throat tightens. \"Nothing.\"\n\nHe pulls her away.\n\nYou're already turning back, already moving. Arrest after arrest… No more pauses now. It gets easier, at least that's what you tell yourself. You stop thinking about faces.",
+        response: "For a second, she's free.\n\nThen another officer grabs her. He snaps at you: \"What do you think you're doing?\"\n\n\"Nothing,\" you say, your throat tightening.\n\nHe pulls her away.\n\nYou're already turning back, already moving. Arrest after arrest… No more pauses now. It gets easier, at least that's what you tell yourself. You stop thinking about faces.",
         next: 'r5_general'
       },
       {
@@ -280,14 +280,14 @@ const GAME_DATA = {
         letter: 'B',
         label: "Hesitate. Your grip loosens.",
         reactionHeader: "B: Hesitate. Your grip loosens.",
-        response: "For a second, you don't move. Neither does she.\n\nThen another officer steps in, grabbing her roughly: \"What are you doing?\"\n\nYour throat tightens. \"Nothing.\"\n\nHe pulls her away. You stay where you are for a moment too long… then force yourself back into motion. Your arm hurts. Your head spins. You tell yourself it wasn't your choice.",
+        response: "For a second, you don't move. Neither does she.\n\nThen another officer steps in, grabbing her roughly: \"What are you doing?\"\n\n\"Nothing,\" you say, your throat tightening.\n\nHe pulls her away. You stay where you are for a moment too long… then force yourself back into motion. Your arm hurts. Your head spins. You tell yourself it wasn't your choice.",
         next: 'r5_general'
       },
       {
         letter: 'C',
         label: "You let her go.",
         reactionHeader: "C: You let her go.",
-        response: "This time, you don't pretend it was an accident. You stand there, your arm bleeding.\n\n\"This isn't right,\" you say out loud.\n\nBen turns to you: \"Don't… \"\n\nYou don't look away. \"We have to do something.\"",
+        response: "This time, you don't pretend it was an accident. You stand there, your arm bleeding.\n\n\"This isn't right,\" you say out loud.\n\nBen turns to you: \"Don't…\"\n\nYou don't look away. \"We have to do something.\"",
         next: 'strawberry_r4c_t'
       }
     ]
@@ -305,21 +305,21 @@ const GAME_DATA = {
       "He follows your gaze. His face tightens. \"That's crazy. We can't.\"",
       "YOU: \"Are you with me or not?\" A beat. His eyes are full of fear, of the possible consequences to come if he says yes.",
       "You don't wait. You move towards the bus alone. An officer stands guard.",
-      "\"I'll take over,\" you say, forcing steadiness into your voice. \"They need someone stronger than me, you go back.\"",
+      "You say, forcing steadiness into your voice: \"I'll take over. They need someone stronger than me, you go back.\"",
       "He studies you, unconvinced.",
       "From behind: \"Hurry, come!\" The officer hesitates, then runs toward the chaos.",
       "Ben steps up beside you: \"You really thought I'd let you do this alone?\"",
       "You climb onto the bus. There's too many.",
       "YOU: \"Everyone out now!\"",
       "The scared children look around, murmuring amongst themselves.",
-      "\"Now! If you leave now, you won't get arrested!\"",
+      "\"Now! If you leave now, you won't get arrested!\" you shout.",
       "For a moment, nothing happens. Then a shift. A child near the front moves. Then another.",
       "A voice asks something you can't hear. Ben pushes forward: \"Go. Now!\"",
       "The first one climbs down, then more. Much more urgently now, some stumble, some help each other.",
       "YOU: \"Keep moving. Don't stop.\"",
       "For a moment, it seems to be okay. It's working.",
       "Then it's noticed.",
-      "...",
+      "—",
       "A shout cuts through everything, \"HEY, STOP\"",
       "Heads turn. Too many, too fast. A kid freezes halfway off the bus.",
       "Ben shoves past you: \"GO! GO!\"",
@@ -330,7 +330,6 @@ const GAME_DATA = {
       "You don't answer, you can't. You're still watching the gap where they got through. Ben is dragged down beside you. He's breathing hard.",
       "\"Worth it?\"",
       "Boots surround you. A baton presses into your chest, holding you down.",
-      "A beat.",
       "COMMANDER: \"Get them out of here.\"",
       "Your hands are forced behind your back."
     ],
@@ -346,26 +345,26 @@ const GAME_DATA = {
     paragraphs: [
       "Your eyes frantically scan the chaos until they lock onto a school bus packed with children.",
       "You grab Ben.",
-      "\"Ben. Look.\"",
+      "\"Ben. Look.\" you say.",
       "He follows your gaze. His face tightens. \"That's crazy. We can't.\"",
       "YOU: \"Are you with me or not?\"",
       "A beat. His eyes are full of fear, of the possible consequences to come if he says yes.",
       "You don't wait. You move towards the bus alone. An officer stands guard.",
-      "\"I'll take over,\" you say, forcing steadiness into your voice. \"They need someone stronger than me, you go back.\" He studies you, unconvinced. You raise your injured arm, and he grimaces at the sight.",
+      "You say, forcing steadiness into your voice: \"I'll take over. They need someone stronger than me, you go back.\" He studies you, unconvinced. You raise your injured arm, and he grimaces at the sight.",
       "From behind: \"Hurry, come!\"",
       "The officer hesitates, then runs toward the chaos.",
       "Ben steps up beside you: \"You really thought I'd let you do this alone?\"",
       "You climb onto the bus. There's too many.",
       "YOU: \"Everyone out now!\"",
       "The children look around, unsure.",
-      "\"Now! If you leave now, you won't get arrested!\"",
+      "\"Now! If you leave now, you won't get arrested!\" you shout.",
       "For a moment, nothing happens. Then a shift. A child near the front moves. Then another.",
       "Ben pushes forward: \"Go. Now!\" The first one climbs down, then more.",
       "Much more urgently now, some stumble, some help each other.",
       "YOU: \"Keep moving. Don't stop.\"",
       "For a moment, it seems to be okay. It's working.",
       "Then it's noticed.",
-      "...",
+      "—",
       "A shout cuts through everything, \"HEY, STOP\"",
       "Heads turn. Too many, too fast. A kid freezes halfway off the bus.",
       "Ben shoves past you: \"GO! GO!\"",
@@ -376,7 +375,6 @@ const GAME_DATA = {
       "You don't answer, you can't. You're still watching the gap where they got through. Ben is dragged down beside you. He's breathing hard.",
       "\"Worth it?\"",
       "Boots surround you. A baton presses into your chest, holding you down.",
-      "A beat.",
       "COMMANDER: \"Get them out of here.\"",
       "Your hands are forced behind your back."
     ],
@@ -396,7 +394,7 @@ const GAME_DATA = {
       "You step into the room. Your kids sit on the floor, close to the screen.",
       "The footage loops.",
       "Children thrown back by hoses. Dogs lunging. Officers holding the line. You.",
-      "\"Dad?\" Your youngest looks up, \"That's you.\"",
+      "Your youngest looks up: \"Dad? That's you.\"",
       "You nod.",
       "\"Why are you hurting them?\" The question hangs. Orders… Duty… The law. None of it sounds right.",
       "\"Are they bad?\" Your older son asks.",
@@ -407,21 +405,21 @@ const GAME_DATA = {
         letter: 'A',
         label: "Justify it.",
         reactionHeader: "A: Justify it.",
-        response: "\"They shouldn't have been out there,\" you respond.\n\nYou keep going, \"They knew what would happen.\" The footage keeps playing.\n\n\"You can't just break the rules and expect nothing to happen.\"\n\nYour oldest frowns, \"But… they weren't doing anything.\"\n\nYou just shake your head. \"That's not how this works.\"",
+        response: "\"They shouldn't have been out there,\" you respond.\n\nYou keep going, \"They knew what would happen.\" The footage keeps playing.\n\nYou continue, \"You can't just break the rules and expect nothing to happen.\"\n\nYour oldest frowns, \"But… they weren't doing anything.\"\n\nYou just shake your head. \"That's not how this works.\"",
         next: 'end_general'
       },
       {
         letter: 'B',
         label: "Acknowledge it, softly. \"No,\" you say quietly.",
         reactionHeader: "B: Acknowledge it, softly.",
-        response: "You exhale. \"No… they're not bad.\" The words feel heavier than they should.\n\n\"They're kids.\"\n\nYou hesitate. \"What happened… it wasn't right.\"\n\nThe room is quiet. The screen keeps playing.",
+        response: "You exhale. \"No… they're not bad.\" The words feel heavier than they should.\n\n\"They're kids,\" you say.\n\nYou hesitate. \"What happened… it wasn't right.\"\n\nThe room is quiet. The screen keeps playing.",
         next: 'end_general'
       },
       {
         letter: 'C',
         label: "Take responsibility.",
         reactionHeader: "C: Take responsibility.",
-        response: "\"No,\" your voice breaks, \"They're not bad.\"\n\nA beat. \"I am…\"\n\nYou look at the screen, but immediately look away.\n\n\"They're just kids… And I hurt them.\"\n\nSilence fills the room.\n\n\"That's on me.\"",
+        response: "You say, your voice breaking: \"No. They're not bad.\"\n\n\"I am…\" you say.\n\nYou look at the screen, but immediately look away.\n\n\"They're just kids… And I hurt them,\" you say.\n\nSilence fills the room.\n\n\"That's on me,\" you say.",
         next: 'end_general'
       }
     ]
@@ -452,14 +450,14 @@ const GAME_DATA = {
         letter: 'B',
         label: "You write the truth. All of it.",
         reactionHeader: "B: You write the truth. All of it.",
-        response: "You describe what you saw, what you did, what you refused to do. You write Ben's name. You write the girl's name; you don't know it, so you write, \"a girl, approximately eight years old, wearing a yellow dress.\"\n\nYou write the number of children on the bus, and you write what you said to the guard.\n\nYou slide the form back. Your colleague reads it. He looks up at you. He reads it again.\n\nHIM: \"You understand what this does to your career?\"\nYOU: \"... Yes.\"\nHIM: \"None of those children are going to remember your name, you know.\"\nYOU: \"Yeah, I know.\"\n\nHe takes it out of the room. You wait for forty minutes. Your commander comes in and sets the form face-down on the table between you.\n\nCOMMANDER: \"Your badge.\" You set it down beside the form.\n\nYou walk out of the station. Ben is sitting on the front steps. His badge is gone too. He looks up at you.\n\nThe two of you laugh. So much that tears start to come out.\n\nBEN: \"So…\"\nYOU: \"Yeah.\"",
+        response: "You describe what you saw, what you did, what you refused to do. You write Ben's name. You write the girl's name; you don't know it, so you write, \"a girl, approximately eight years old, wearing a yellow dress.\"\n\nYou write the number of children on the bus, and you write what you said to the guard.\n\nYou slide the form back. Your colleague reads it. He looks up at you. He reads it again.\n\nHIM: \"You understand what this does to your career?\"\n\nYOU: \"... Yes.\"\n\nHIM: \"None of those children are going to remember your name, you know.\"\n\nYOU: \"Yeah, I know.\"\n\nHe takes it out of the room. You wait for forty minutes. Your commander comes in and sets the form face-down on the table between you.\n\nCOMMANDER: \"Your badge.\" You set it down beside the form.\n\nYou walk out of the station. Ben is sitting on the front steps. His badge is gone too. He looks up at you.\n\nThe two of you laugh. So much that tears start to come out.\n\nBEN: \"So…\"\n\nYOU: \"Yeah.\"",
         next: 'end_testimony'
       },
       {
         letter: 'C',
         label: "You don't write anything.",
         reactionHeader: "C: You don't write anything.",
-        response: "You set the pen down. You push the form back across the table. It's blank.\n\nThe officer waits, \"I can't submit a blank form.\"\n\nYOU: \"Then you fill it out.\"\n\nHe stares at you. You stare back.\n\nHe picks up the form and leaves. You sit alone in the room for a long time.\n\nWhen the door opens again, you expect to see your commander. Instead, it's a man you don't recognize; older, Black, in a suit. He doesn't sit down.\n\nHe sets a card on the table in front of you, \"I'm an attorney.\"\n\nATTORNEY: \"I've been called in by the movement's legal team. I understand you helped children exit a vehicle today. You were injured doing it, and then arrested by your own department.\"\n\nA beat.\n\nATTORNEY: \"That's a story people will want to hear. If you want to tell me.\"\n\nHe leaves the card on the table. He walks out.\n\nYou sit there. Your arm throbs. Ben is somewhere in this building. You pick up the card.",
+        response: "You set the pen down. You push the form back across the table. It's blank.\n\nThe officer waits, \"I can't submit a blank form.\"\n\nYOU: \"Then you fill it out.\"\n\nHe stares at you. You stare back.\n\nHe picks up the form and leaves. You sit alone in the room for a long time.\n\nWhen the door opens again, you expect to see your commander. Instead, it's a man you don't recognize; older, Black, in a suit. He doesn't sit down.\n\nHe sets a card on the table in front of you, \"I'm an attorney.\"\n\nATTORNEY: \"I've been called in by the movement's legal team. I understand you helped children exit a vehicle today. You were injured doing it, and then arrested by your own department.\"\n\nATTORNEY: \"That's a story people will want to hear. If you want to tell me.\"\n\nHe leaves the card on the table. He walks out.\n\nYou sit there. Your arm throbs. Ben is somewhere in this building. You pick up the card.",
         next: 'end_testimony'
       }
     ]
@@ -493,10 +491,10 @@ const GAME_DATA = {
       "You hear it again; water hitting pavement, dogs barking, shouting… singing.",
       "You step into the room. Your kids sit on the floor, close to the screen.",
       "Children thrown back by hoses. Dogs lunging. Officers holding the line. Then a flash of you protecting the little girl, fighting off the dog. Ben directing the kids away.",
-      "\"Dad?\" Your youngest daughter looks up, \"That's you.\"",
+      "Your youngest daughter looks up: \"Dad? That's you.\"",
       "Exhausted, you let yourself fall to your knees. You wrap your arms around her, holding her tight.",
       "HER: \"Were you scared?\"",
-      "YOU: \"Yup. The whole time.\" Your oldest son walks over, curious.",
+      "\"Yup. The whole time,\" you say. Your oldest son walks over, curious.",
       "HIM: \"Then why did you do it?\"",
       "You think about the girl in the yellow dress. The hundreds of children singing, even through everything.",
       "YOU: \"Being scared isn't an excuse to not do anything… especially when it's hurting innocent people.\""
