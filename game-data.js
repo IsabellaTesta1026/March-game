@@ -303,7 +303,7 @@ const GAME_DATA = {
       "Your eyes frantically scan the chaos until they lock onto a school bus packed with children.",
       "You grab Ben: \"Ben. Look.\"",
       "He follows your gaze. His face tightens. \"That's crazy. We can't.\"",
-      "YOU: \"Are you with me or not?\" A beat. His eyes are full of fear, of the possible consequences to come if he says yes.",
+      "\"Are you with me or not?\" you ask. His eyes are full of fear, of the possible consequences to come if he says yes.",
       "You don't wait. You move towards the bus alone. An officer stands guard.",
       "You say, forcing steadiness into your voice: \"I'll take over. They need someone stronger than me, you go back.\"",
       "He studies you, unconvinced.",
@@ -477,16 +477,26 @@ const GAME_DATA = {
     ]
   },
 
-  // ─── ENDING — TESTIMONY ──────────────────────────────────────────────────
+  // ─── ENDING — TESTIMONY (station) ────────────────────────────────────────
   end_testimony: {
-    type: 'ending',
+    type: 'narrative',
     bg: 'round5-police-station',
     showHeader: false,
     title: 'THE END',
     paragraphs: [
       "The attorney takes your statement; the real one describing the briefing, the hoses, the girl, the bus, Ben, the dogs, all of it. He writes everything down. You sign the documents.",
-      "Three weeks later, your testimony is part of a federal civil rights complaint against the Birmingham Police Department. Your name is on it. Ben testifies too.",
-      "—",
+      "Three weeks later, your testimony is part of a federal civil rights complaint against the Birmingham Police Department. Your name is on it. Ben testifies too."
+    ],
+    next: 'end_testimony_home'
+  },
+
+  // ─── ENDING — TESTIMONY (home) ────────────────────────────────────────────
+  end_testimony_home: {
+    type: 'ending',
+    bg: 'round5-home',
+    showHeader: false,
+    title: 'THE END',
+    paragraphs: [
       "When you get home, the lights are dim. The TV flickers across the walls.",
       "You hear it again; water hitting pavement, dogs barking, shouting… singing.",
       "You step into the room. Your kids sit on the floor, close to the screen.",
