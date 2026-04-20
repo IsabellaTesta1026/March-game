@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birmingham 1963, The Children's March</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Background image layer — sits behind all screens -->
+<div id="scene-bg-layer" aria-hidden="true">
+  <img id="scene-bg-img" src="" alt="" onerror="console.warn('BG image failed to load:', this.src)">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SVG DEFS — sketchy border filter + officer silhouette
+     ═══════════════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="sketchy-filter" x="-3%" y="-3%" width="106%" height="106%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <symbol id="officer-silhouette" viewBox="0 0 200 360">
+      <ellipse cx="100" cy="62" rx="32" ry="34" fill="#1a1a1a"/>
+      <rect x="64" y="36" width="72" height="10" rx="3" fill="#1a1a1a"/>
+      <rect x="56" y="44" width="88" height="6" rx="2" fill="#1a1a1a"/>
+      <rect x="91" y="94" width="18" height="14" fill="#1a1a1a"/>
+      <path d="M52 106 C36 112 26 130 24 200 L176 200 C174 130 164 112 148 106 C132 96 68 96 52 106Z" fill="#1a1a1a"/>
+      <polygon points="97,108 103,108 106,155 100,162 94,155" fill="#333"/>
+      <polygon points="100,128 108,133 107,142 100,145 93,142 92,133" fill="#e8e4d8"/>
+      <rect x="24" y="196" width="152" height="10" rx="2" fill="#111"/>
+      <path d="M24 200 L14 260 L34 263 L52 200" fill="#1a1a1a"/>
+      <path d="M176 200 L186 260 L166 263 L148 200" fill="#1a1a1a"/>
+      <rect x="64" y="206" width="30" height="130" rx="5" fill="#1a1a1a"/>
+      <rect x="106" y="206" width="30" height="130" rx="5" fill="#1a1a1a"/>
+      <ellipse cx="79" cy="338" rx="22" ry="10" fill="#0a0a0a"/>
+      <ellipse cx="121" cy="338" rx="22" ry="10" fill="#0a0a0a"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PERSISTENT UI — fixed top-right, sits in paper background
+     ═══════════════════════════════════════════════════════════ -->
+<div id="persistent-ui" aria-label="Game settings">
+  <button class="btn-persistent" id="settings-btn" aria-label="Open settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+    </svg>
+    SETTINGS
+  </button>
+  <button class="btn-persistent" id="narration-btn" aria-label="Toggle narration" aria-pressed="false">
+    <!-- Speaker-off icon (default) -->
+    <svg id="narration-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/>
+      <line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+    <!-- Speaker-on icon (shown when active) -->
+    <svg id="narration-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+    </svg>
+    NARRATION
+  </button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 1: TITLE
+     ═══════════════════════════════════════════════════════════ -->
+<div id="title-screen" class="screen screen-centered" role="main" aria-label="Title screen">
+  <div class="game-card">
+
+    <div class="card-header card-header-newspaper">
+      <span>BIRMINGHAM CHILDREN'S MARCH</span>
+      <span>GAME BY: GIA KIM &amp; ISABELLA TESTA</span>
+      <span>MAY 2ND 1963</span>
+    </div>
+
+    <div class="card-body title-body">
+      <div class="title-newspaper-grid">
+
+        <!-- Left column -->
+        <div class="title-col">
+          <h2 class="title-col-headline">U.S. CALLS ON ALABAMA TO HALT RACIAL STRIFE</h2>
+          <p class="title-col-text">Federal officials urged Alabama authorities to intervene as protests mounted across Birmingham. Hundreds of demonstrators were arrested as Bull Connor's officers maintained their post downtown. The Kennedy administration watched closely, wary of appearing to interfere in state matters.</p>
+          <img src="images/title-left.jpg" class="title-photo-block" alt="Historical photo" onerror="this.style.visibility='hidden'">
+          <p class="title-col-text">Observers noted that the movement had taken an unexpected turn, the marchers flooding the streets were not the seasoned veterans of the civil rights struggle but children, some as young as six years old, carrying signs and singing hymns as they walked toward downtown.</p>
+        </div>
+
+        <!-- Center column -->
+        <div class="title-col title-col-center">
+          <p class="title-dateline">BIRMINGHAM, ALA., MAY 2, 1963</p>
+          <h1 class="heading-distressed title-game-heading">HOLD<br>THE LINE</h1>
+          <div class="title-divider-rule"></div>
+          <img src="images/title-center.jpg" class="title-photo-block title-photo-tall" alt="Historical photo" onerror="this.style.visibility='hidden'">
+          <p class="title-col-subtext">Inspired by the true events of<br>the Birmingham Children's March</p>
+          <button class="btn" id="start-btn">START</button>
+        </div>
+
+        <!-- Right column -->
+        <div class="title-col">
+          <h2 class="title-col-headline">VIOLENCE ERUPTS AT RACIAL PROTESTS</h2>
+          <p class="title-col-text">Firehoses and police dogs were deployed against nonviolent marchers in Kelly Ingram Park as authorities attempted to disperse the crowds. Images of the confrontation circulated nationally, drawing widespread condemnation from civil rights organizations and political figures.</p>
+          <img src="images/title-right.jpg" class="title-photo-block" alt="Historical photo" onerror="this.style.visibility='hidden'">
+          <p class="title-col-text">The Birmingham campaign, organized by Rev. Fred Shuttlesworth and the Southern Christian Leadership Conference, aimed to break the city's entrenched system of racial segregation through sustained economic pressure and public demonstration.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card-footer title-footer">
+      <button class="btn btn-small" id="title-learn-more-btn">LEARN MORE</button>
+      <button class="btn btn-small" id="title-works-cited-btn">WORKS CITED</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 1b: HISTORICAL CONTEXT
+     ═══════════════════════════════════════════════════════════ -->
+<div id="history-screen" class="screen screen-centered hidden" role="main" aria-label="Historical context">
+  <div class="game-card">
+
+    <div class="card-header card-header-centered">
+      <span>BIRMINGHAM CHILDREN'S MARCH</span>
+      <span class="card-header-dimmed">BEFORE YOU BEGIN</span>
+      <span class="card-header-dimmed">MAY 2ND 1963</span>
+    </div>
+
+    <div class="card-body history-body">
+      <h1 class="heading-distressed history-headline">BIRMINGHAM, 1963</h1>
+      <p class="history-byline">The city on the edge of history</p>
+      <div class="history-columns">
+        <p>Birmingham, Alabama had earned a grim distinction. By the spring of 1963, it was widely regarded as the most thoroughly segregated city in America, a place where racial separation was enforced not only by law but by violence. Black residents were barred from white schools, restaurants, parks, and water fountains. Employment beyond manual labor was effectively closed off. The city's Black neighborhoods had been bombed so many times by white supremacists that one section had been nicknamed "Dynamite Hill."</p>
+        <p>At the center of the city's racial order stood T. Eugene "Bull" Connor, Birmingham's Commissioner of Public Safety. Connor had held the position on and off since 1937, and he wielded it without apology. He authorized police force against protesters, arrested civil rights organizers on a whim, and made no secret of his contempt for anyone who challenged the system. For years, his brutality had worked.</p>
+        <p>But the city had its own resistance. Reverend Fred Shuttlesworth had been fighting Birmingham's segregation laws from within for nearly a decade. As founder of the Alabama Christian Movement for Human Rights, he survived a bomb blast on Christmas Day, 1956, his home destroyed while he slept inside. He walked out of the rubble and told the crowd gathered outside that God had kept him alive for a reason. He kept organizing.</p>
+        <p>In early 1963, Shuttlesworth invited Dr. Martin Luther King Jr. and the Southern Christian Leadership Conference to come to Birmingham. He believed the city's extremism would shock the nation. King accepted. That spring, they launched Project C, Project Confrontation, a campaign of nonviolent direct action: sit-ins, marches, and economic boycotts of segregated downtown businesses. King was arrested on Good Friday, April 12th. From his cell, he wrote the <em>Letter from Birmingham Jail</em>.</p>
+        <p>Project C was struggling. Many Black adults were afraid to march, fearing arrest, job loss, or worse. Then James Bevel, the SCLC's Director of Direct Action, proposed something bold: recruit the children. They had less to lose. They were not afraid. Bevel had been meeting with students across the city, at churches, at schools, training them in nonviolent resistance, telling them they might be arrested. They said yes anyway.</p>
+        <p>On the morning of May 2, 1963, over a thousand children and teenagers slipped out of their schools and made their way to 16th Street Baptist Church. They were singing. They marched out in waves toward downtown Birmingham. Bull Connor's officers were already in position. You are one of them.</p>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn-replay btn-replay-inline" id="history-replay-btn" style="display:none" aria-label="Replay narration">↺</button>
+      <button class="btn" id="history-continue-btn">CONTINUE</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 2: CHARACTER SELECT
+     ═══════════════════════════════════════════════════════════ -->
+<div id="character-select-screen" class="screen screen-centered hidden" role="main" aria-label="Character select">
+  <div class="game-card">
+
+    <div class="card-header">
+      <span>CHOOSE YOUR CHARACTER</span>
+    </div>
+
+    <div class="card-body char-select-body">
+      <p class="char-title">"The Officer"</p>
+      <div class="char-layout">
+        <div class="char-portrait" role="img" aria-label="Police officer">
+          <img src="images/char-officer.jpg" class="char-portrait-img" alt="" onerror="this.style.visibility='hidden'">
+        </div>
+        <div class="char-stats">
+          <p><strong>Race:</strong> White</p>
+          <p><strong>Age:</strong> 33</p>
+          <p><strong>Occupation:</strong> Police Officer</p>
+<p><strong>Friend(s):</strong> Ben (Best friend)</p>
+        </div>
+      </div>
+      <p class="char-bio">
+        An officer in the Birmingham Police Department. He has a beautiful family, a mortgage, and a commanding officer he respects. He has never thought of himself as a bad person. He believes in the chain of command, and the idea that if everyone does their job, things stay safe. His duty is to protect the city he loves.
+      </p>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn" id="select-character-btn">SELECT</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 3: CHARACTER NAME
+     ═══════════════════════════════════════════════════════════ -->
+<div id="character-name-screen" class="screen screen-centered hidden" role="main" aria-label="Character name entry">
+  <div class="game-card">
+
+    <div class="card-header">
+      <span>NAME YOUR CHARACTER</span>
+    </div>
+
+    <div class="card-body char-name-body">
+      <h1 class="heading-distressed char-name-heading">WHAT WILL BE YOUR CHARACTER'S NAME?</h1>
+      <input
+        type="text"
+        id="character-name-input"
+        class="text-input-sketchy"
+        placeholder="Write here..."
+        maxlength="40"
+        autocomplete="off"
+        aria-label="Enter character name"
+      />
+    </div>
+
+    <div class="card-footer">
+      <button class="btn" id="back-to-character-btn">BACK</button>
+      <button class="btn" id="confirm-name-btn">SELECT</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 4: PRE-REFLECTION
+     ═══════════════════════════════════════════════════════════ -->
+<div id="pre-reflection-screen" class="screen screen-centered hidden" role="main" aria-label="Pre-reflection question">
+  <div class="game-card">
+
+    <div class="card-header">
+      <span>PRE-REFLECTION QUESTION</span>
+    </div>
+
+    <div class="card-body reflection-body">
+      <p class="reflection-prompt">
+        Before you begin: <em>If you were in the shoes of a white police officer in 1963 Birmingham, what do you think you would do, follow orders, or defy them?</em>
+      </p>
+      <div class="textarea-wrapper sketchy">
+        <textarea
+          id="pre-reflection-textarea"
+          class="reflection-textarea"
+          maxlength="350"
+          placeholder="Write here..."
+          aria-label="Write your pre-reflection response"
+        ></textarea>
+        <div class="char-counter" aria-live="polite">
+          <span id="pre-char-count">0</span>/350
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn" id="pre-post-btn">POST ANONYMOUSLY</button>
+      <button class="btn" id="pre-continue-btn">CONTINUE TO GALLERY</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 5: REFLECTION GALLERY
+     ═══════════════════════════════════════════════════════════ -->
+<div id="gallery-screen" class="screen screen-centered hidden" role="main" aria-label="Reflection gallery">
+  <div class="game-card">
+
+    <div class="card-header">
+      <span>PRE-REFLECTION GALLERY</span>
+    </div>
+
+    <div class="card-body gallery-body">
+      <p class="gallery-subtitle">Anonymous responses from players before playing:</p>
+      <div class="gallery-posts-container" id="gallery-posts" role="list" aria-label="Posted reflections">
+        <!-- injected by engine -->
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn" id="gallery-start-btn">START GAME</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 6: GAME SCREEN (story / choice / reaction)
+     ═══════════════════════════════════════════════════════════ -->
+<div id="game-screen" class="screen screen-centered hidden" role="main" aria-label="Game screen">
+
+  <!-- ── Story View ─────────────────────────────────────────── -->
+  <div id="story-view" class="game-view game-card">
+    <div class="card-header">
+      <span id="story-round-label"></span>
+      <span class="card-header-dimmed">BIRMINGHAM 1963</span>
+    </div>
+    <div class="card-body story-body" id="story-body">
+      <div class="story-beat-text" id="story-beat-text" aria-live="polite"></div>
+      <button class="btn-back" id="story-back-btn" style="display:none" aria-label="Go back">‹</button>
+      <button class="btn-replay" id="story-replay-btn" style="display:none" aria-label="Replay narration">↺</button>
+      <button class="btn-advance" id="story-advance-btn" aria-label="Continue to next line">›</button>
+    </div>
+  </div>
+
+  <!-- ── Choice View ────────────────────────────────────────── -->
+  <div id="choice-view" class="game-view game-card hidden">
+    <div class="card-header choice-card-header">
+      <span class="choice-prompt-label">WHAT DO YOU DO?</span>
+      <div id="timer-display" style="display:none" aria-live="polite" aria-label="Time remaining">
+        <span id="timer-count">20</span><span class="timer-label">s</span>
+      </div>
+    </div>
+    <div id="timer-bar-track" aria-hidden="true">
+      <div id="timer-bar-inner"></div>
+    </div>
+    <div class="choice-list" id="choice-buttons" role="group" aria-label="Choice options">
+      <!-- injected by engine -->
+    </div>
+  </div>
+
+  <!-- ── Reaction View ──────────────────────────────────────── -->
+  <div id="reaction-view" class="game-view game-card hidden">
+    <div class="reaction-card-header">
+      <span class="reaction-label-pre">YOUR CHOICE</span>
+      <div id="reaction-choice-text" class="reaction-choice-echo" aria-live="assertive"></div>
+    </div>
+    <div class="card-body reaction-body">
+      <div class="reaction-beat-text" id="reaction-beat-text" aria-live="polite"></div>
+      <button class="btn-back" id="reaction-back-btn" style="display:none" aria-label="Go back">‹</button>
+      <button class="btn-replay" id="reaction-replay-btn" style="display:none" aria-label="Replay narration">↺</button>
+      <button class="btn-advance" id="reaction-advance-btn" aria-label="Next line">›</button>
+    </div>
+  </div>
+
+</div><!-- /#game-screen -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 7: END REFLECTION
+     ═══════════════════════════════════════════════════════════ -->
+<div id="end-reflection-screen" class="screen screen-centered hidden" role="main" aria-label="End reflection question">
+  <div class="game-card">
+
+    <div class="card-header">
+      <span>REFLECTION QUESTION</span>
+    </div>
+
+    <div class="card-body reflection-body">
+      <p class="reflection-prompt">
+        Now that you've played: <em>How did your choices make you feel? What surprised you most about the decisions you made?</em>
+      </p>
+      <div class="textarea-wrapper sketchy">
+        <textarea
+          id="end-reflection-textarea"
+          class="reflection-textarea"
+          maxlength="350"
+          placeholder="Write here..."
+          aria-label="Write your post-game reflection"
+        ></textarea>
+        <div class="char-counter" aria-live="polite">
+          <span id="end-char-count">0</span>/350
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn" id="end-post-btn">POST ANONYMOUSLY</button>
+      <button class="btn" id="end-continue-btn">CONTINUE TO CITATIONS</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 8: LEARN MORE
+     ═══════════════════════════════════════════════════════════ -->
+<div id="learn-more-screen" class="screen screen-centered hidden" role="main" aria-label="Learn more about the Children's March">
+  <div class="game-card card-xl">
+
+    <div class="card-header card-header-newspaper">
+      <span>BIRMINGHAM CHILDREN'S MARCH</span>
+      <span>LEARN MORE</span>
+      <span>MAY 2ND 1963</span>
+    </div>
+
+    <div class="card-body citations-body">
+      <div class="citations-learn-more">
+        <h2 class="heading-sub">WANT TO LEARN MORE? START HERE…</h2>
+        <p>The Birmingham Children's Crusade of May 1963 was a turning point in the American Civil Rights Movement. Organized by Reverend James Bevel and endorsed by Dr. Martin Luther King Jr., thousands of Black schoolchildren voluntarily left their classrooms to march through the streets of Birmingham, Alabama, facing fire hoses and police dogs to demand an end to racial segregation.</p>
+        <p>Their courage shocked the nation and the world. The images broadcast on television and printed in newspapers the following day generated enormous public pressure on the Kennedy administration and ultimately contributed to the passage of the Civil Rights Act of 1964.</p>
+
+        <h2 class="heading-sub">DOCUMENTARIES &amp; FILM</h2>
+        <ul>
+          <li><em>4 Little Girls</em> (1997), Spike Lee's documentary on the 16th Street Baptist Church bombing and the Birmingham campaign. Available on HBO Max.</li>
+          <li><em>Eyes on the Prize</em> (1987), The definitive documentary series on the American Civil Rights Movement. Episodes 3 &amp; 4 cover Birmingham directly.<br>
+            <a href="https://www.youtube.com/playlist?list=PLBKnKXBiMTMSBvobZpjN2Y1bUCaUuaBqj" target="_blank" rel="noopener">Watch free on YouTube →</a></li>
+          <li><em>Mighty Times: The Children's March</em> (2004), Academy Award-winning short documentary focused entirely on the Children's Crusade.<br>
+            <a href="https://www.youtube.com/watch?v=GbBvvRMBRFo" target="_blank" rel="noopener">Watch free on YouTube →</a></li>
+        </ul>
+
+        <h2 class="heading-sub">BOOKS</h2>
+        <ul>
+          <li>McWhorter, Diane. <em>Carry Me Home: Birmingham, Alabama.</em> Simon &amp; Schuster, 2001., Pulitzer Prize-winning history of the campaign.</li>
+          <li>Levine, Ellen. <em>Freedom's Children: Young Civil Rights Activists Tell Their Own Stories.</em> Putnam, 1993., First-person accounts from the children who marched.</li>
+          <li>Bausum, Ann. <em>Freedom Riders: John Lewis and Jim Zwerg on the Front Lines of the Civil Rights Movement.</em> National Geographic, 2006.</li>
+          <li>King, Martin Luther Jr. <em>Letter from Birmingham Jail.</em> 1963., Written by Dr. King during his imprisonment. Read free at:<br>
+            <a href="https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html" target="_blank" rel="noopener">africa.upenn.edu →</a></li>
+        </ul>
+
+        <h2 class="heading-sub">ONLINE RESOURCES</h2>
+        <ul>
+          <li>Birmingham Civil Rights Institute, <a href="https://www.bcri.org" target="_blank" rel="noopener">bcri.org</a><br>
+            The leading museum and archive dedicated to the Birmingham campaign.</li>
+          <li>Civil Rights Movement Veterans, <a href="https://www.crmvet.org" target="_blank" rel="noopener">crmvet.org</a><br>
+            First-hand accounts and photographs from movement participants.</li>
+          <li>King Institute, Stanford University, <a href="https://kinginstitute.stanford.edu/birmingham-campaign" target="_blank" rel="noopener">kinginstitute.stanford.edu</a><br>
+            Detailed encyclopedia entry on the Birmingham Campaign.</li>
+          <li>National Museum of African American History &amp; Culture, <a href="https://nmaahc.si.edu/explore/stories/childrens-crusade" target="_blank" rel="noopener">nmaahc.si.edu, The Children's Crusade</a></li>
+        </ul>
+
+        <h2 class="heading-sub">FOR THE CLASSROOM</h2>
+        <ul>
+          <li>Zinn Education Project, <a href="https://www.zinnedproject.org/news/tdih/children-of-birmingham-fill-the-jails/" target="_blank" rel="noopener">Children of Birmingham Fill the Jails</a><br>
+            Lesson plans and primary sources for teaching this moment in history.</li>
+          <li>Teaching Tolerance / Learning for Justice, <a href="https://www.learningforjustice.org" target="_blank" rel="noopener">learningforjustice.org</a><br>
+            Free classroom resources on civil rights history and racial justice.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn btn-small" id="learn-more-works-btn">WORKS CITED</button>
+      <button class="btn" id="learn-more-title-btn">RETURN TO TITLE</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 9: WORKS CITED
+     ═══════════════════════════════════════════════════════════ -->
+<div id="works-cited-screen" class="screen screen-centered hidden" role="main" aria-label="Works cited">
+  <div class="game-card card-xl">
+
+    <div class="card-header card-header-newspaper">
+      <span>BIRMINGHAM CHILDREN'S MARCH</span>
+      <span>WORKS CITED</span>
+      <span>MAY 2ND 1963</span>
+    </div>
+
+    <div class="card-body citations-body">
+      <div class="citations-works-cited">
+        <h2 class="heading-sub">WORKS CITED</h2>
+        <ul>
+          <li>Getty Images, Birmingham 1963 Photography Archive.<br>
+            <a href="https://www.gettyimages.com/photos/birmingham-1963" target="_blank" rel="noopener">gettyimages.com/photos/birmingham-1963</a></li>
+          <li>Civil Rights Movement Veterans, Birmingham Photographs Collection.<br>
+            <a href="https://www.crmvet.org/images/imgbham.htm" target="_blank" rel="noopener">crmvet.org/images/imgbham.htm</a></li>
+          <li>"Unseen photographs of civil rights conflict in Birmingham, Alabama, 1963." <em>The Guardian</em>, 12 May 2018.<br>
+            <a href="https://www.theguardian.com/us-news/gallery/2018/may/12/unseen-photographs-of-civil-rights-conflict-in-birmingham-alabama-1963" target="_blank" rel="noopener">theguardian.com, Unseen photographs</a></li>
+          <li>McWhorter, Diane. <em>Carry Me Home: Birmingham, Alabama: The Climactic Battle of the Civil Rights Revolution.</em> Simon &amp; Schuster, 2001.</li>
+          <li>Levine, Ellen. <em>Freedom's Children: Young Civil Rights Activists Tell Their Own Stories.</em> Putnam, 1993.</li>
+        </ul>
+        <h2 class="heading-sub">PHOTO CREDITS</h2>
+        <ul>
+          <li><em>Firemen Spraying Protestors in Downtown Birmingham.</em> 1963. Wikimedia Commons.<br>
+            <a href="https://commons.wikimedia.org/wiki/File:Firemen_spraying_protestors_in_Downtown_Birmingham_01.jpg" target="_blank" rel="noopener">commons.wikimedia.org, Fire hose photograph</a>. Public domain.</li>
+          <li><em>Police Dog Attack, Birmingham.</em> 1963. Museum of Fine Arts, Houston.<br>
+            <a href="https://emuseum.mfah.org/objects/26016/police-dog-attack-birmingham" target="_blank" rel="noopener">emuseum.mfah.org, Police dog attack photograph</a>. Used for educational purposes.</li>
+          <li>Adelman, Bob. <em>Children Loaded onto School Bus, Birmingham, Alabama.</em> May 1963. © Bob Adelman Estate.<br>
+            <a href="https://www.bobadelman.net" target="_blank" rel="noopener">bobadelman.net</a>. Used for educational purposes.</li>
+          <li>Adelman, Bob. <em>Police Officers Facing Crowd, Birmingham, Alabama.</em> May 1963. © Bob Adelman Estate.<br>
+            <a href="https://www.bobadelman.net" target="_blank" rel="noopener">bobadelman.net</a>. Used for educational purposes.</li>
+          <li><em>Family Watching Television.</em> 1958. Wikimedia Commons.<br>
+            <a href="https://commons.wikimedia.org/wiki/File:Family_watching_television_1958.jpg" target="_blank" rel="noopener">commons.wikimedia.org, Family watching television</a>. Public domain.</li>
+          <li>Adelman, Bob. <em>Protesters Loaded into Paddy Wagon, Birmingham, Alabama.</em> May 1963. © Bob Adelman Estate.<br>
+            <a href="https://www.bobadelman.net" target="_blank" rel="noopener">bobadelman.net</a>. Used for educational purposes.</li>
+          <li><em>Children's Crusade, Young Children Stopped by Police, Birmingham, Alabama.</em> 1963. Used for educational purposes.</li>
+          <li><em>Birmingham Children's Crusade, Crowd Blasted by Fire Hose.</em> 1963. Getty Images, no. 97940225.<br>
+            <a href="https://www.gettyimages.com/detail/97940225" target="_blank" rel="noopener">gettyimages.com</a>. Used for educational purposes.</li>
+          <li><em>Birmingham Children's Crusade, Children Marching with Signs.</em> 1963. Getty Images, no. 97940234.<br>
+            <a href="https://www.gettyimages.com/detail/97940234" target="_blank" rel="noopener">gettyimages.com</a>. Used for educational purposes.</li>
+          <li><em>Birmingham Children's Crusade, Crowd Outside Church.</em> 1963. Getty Images, no. 1061693802.<br>
+            <a href="https://www.gettyimages.com/detail/1061693802" target="_blank" rel="noopener">gettyimages.com</a>. Used for educational purposes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn btn-small" id="works-cited-learn-btn">LEARN MORE</button>
+      <button class="btn" id="works-cited-title-btn">RETURN TO TITLE</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     MODAL: SETTINGS
+     ═══════════════════════════════════════════════════════════ -->
+<div id="settings-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Settings">
+  <div class="modal-box">
+    <h2 class="heading-sub">Settings</h2>
+    <button class="modal-close" id="close-settings-btn" aria-label="Close settings">×</button>
+    <div class="modal-row">
+      <label>Sound</label>
+      <div class="toggle-switch on" id="sound-toggle" role="switch" aria-checked="true" tabindex="0" aria-label="Toggle sound"></div>
+    </div>
+    <div class="modal-row">
+      <label>Decision Timer <span class="modal-label-note">(20 sec)</span></label>
+      <div class="toggle-switch on" id="timer-toggle" role="switch" aria-checked="true" tabindex="0" aria-label="Toggle 20-second decision timer"></div>
+    </div>
+    <div class="modal-row">
+      <label>High Contrast</label>
+      <div class="toggle-switch" id="high-contrast-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle high contrast"></div>
+    </div>
+    <hr class="modal-divider"/>
+    <div class="modal-row">
+      <label>Restart Story</label>
+      <button class="btn btn-small" id="restart-game-btn">RESTART STORY</button>
+    </div>
+    <div class="modal-row">
+      <label>Return to Title</label>
+      <button class="btn btn-small" id="settings-title-btn">TITLE</button>
+    </div>
+    <hr class="modal-divider"/>
+    <div class="modal-row">
+      <label>Learn More</label>
+      <button class="btn btn-small" id="settings-learn-more-btn">LEARN MORE</button>
+    </div>
+    <div class="modal-row">
+      <label>Works Cited</label>
+      <button class="btn btn-small" id="settings-works-cited-btn">WORKS CITED</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     MODAL: GALLERY DETAIL
+     ═══════════════════════════════════════════════════════════ -->
+<div id="gallery-detail-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Full reflection">
+  <div class="modal-box modal-box-reflection">
+    <p class="gallery-detail-label" id="gallery-detail-label"></p>
+    <button class="modal-close" id="close-gallery-detail-btn" aria-label="Close">×</button>
+    <p class="gallery-detail-text" id="gallery-detail-text"></p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════════════════ -->
+<script src="game-data.js"></script>
+<script src="game-engine.js"></script>
+
+</body>
+</html>

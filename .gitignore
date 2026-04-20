@@ -1,0 +1,17 @@
+# Temp converted files
+*.avif
+birmingham-childrens-crusade-gettyimages-*.jpg
+NMAAHC-*.jpg
+
+# Raw source files not needed for deployment
+birmingham storyline .md
+ChildrensCrusade-1a.png
+Birm_*.jpg
+Chlidren's_Crusade_1963.jpg
+Screenshot*.png
+
+# macOS
+.DS_Store
+
+# Claude settings
+.claude/
