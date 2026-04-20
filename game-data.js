@@ -473,7 +473,7 @@ const GAME_DATA = {
     title: 'THE END',
     paragraphs: [
       "You make it make sense, because you have to.",
-      "...",
+      "—",
       "In the morning, you go back to work. You are reassigned to the desk, away from the demonstrations. Filing. Your commander tells you it's temporary. You both know it isn't.",
       "The marches continue. The settlement is reached. The Civil Rights Act passes 13 months later. You are at your desk the day it passes."
     ]
@@ -488,7 +488,7 @@ const GAME_DATA = {
     paragraphs: [
       "The attorney takes your statement; the real one describing the briefing, the hoses, the girl, the bus, Ben, the dogs, all of it. He writes everything down. You sign the documents.",
       "Three weeks later, your testimony is part of a federal civil rights complaint against the Birmingham Police Department. Your name is on it. Ben testifies too.",
-      "...",
+      "—",
       "When you get home, the lights are dim. The TV flickers across the walls.",
       "You hear it again; water hitting pavement, dogs barking, shouting… singing.",
       "You step into the room. Your kids sit on the floor, close to the screen.",
