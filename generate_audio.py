@@ -217,20 +217,22 @@ FILES = [
     ('reaction-r4_strawberry-c-2.mp3', 'Ben turns to you: "Don\'t\u2026"'),
     ('reaction-r4_strawberry-c-3.mp3', 'You don\'t look away. "We have to do something."'),
 
-    # ── End testimony ─────────────────────────────────────────────────────────
+    # ── End testimony — station ────────────────────────────────────────────────
     ('scene-end_testimony-0.mp3',  "The attorney takes your statement; the real one describing the briefing, the hoses, the girl, the bus, Ben, the dogs, all of it. He writes everything down. You sign the documents."),
     ('scene-end_testimony-1.mp3',  "Three weeks later, your testimony is part of a federal civil rights complaint against the Birmingham Police Department. Your name is on it. Ben testifies too."),
-    ('scene-end_testimony-2.mp3',  "When you get home, the lights are dim. The TV flickers across the walls."),
-    ('scene-end_testimony-3.mp3',  "You hear it again; water hitting pavement, dogs barking, shouting\u2026 singing."),
-    ('scene-end_testimony-4.mp3',  "You step into the room. Your kids sit on the floor, close to the screen."),
-    ('scene-end_testimony-5.mp3',  "Children thrown back by hoses. Dogs lunging. Officers holding the line. Then a flash of you protecting the little girl, fighting off the dog. Ben directing the kids away."),
-    ('scene-end_testimony-6.mp3',  '"Dad?" Your youngest daughter looks up, "That\'s you."'),
-    ('scene-end_testimony-7.mp3',  "Exhausted, you let yourself fall to your knees. You wrap your arms around her, holding her tight."),
-    ('scene-end_testimony-8.mp3',  'HER: "Were you scared?"'),
-    ('scene-end_testimony-9.mp3',  'YOU: "Yup. The whole time." Your oldest son walks over, curious.'),
-    ('scene-end_testimony-10.mp3', 'HIM: "Then why did you do it?"'),
-    ('scene-end_testimony-11.mp3', "You think about the girl in the yellow dress. The hundreds of children singing, even through everything."),
-    ('scene-end_testimony-12.mp3', 'YOU: "Being scared isn\'t an excuse to not do anything\u2026 especially when it\'s hurting innocent people."'),
+
+    # ── End testimony — home ──────────────────────────────────────────────────
+    ('scene-end_testimony_home-0.mp3',  "When you get home, the lights are dim. The TV flickers across the walls."),
+    ('scene-end_testimony_home-1.mp3',  "You hear it again; water hitting pavement, dogs barking, shouting\u2026 singing."),
+    ('scene-end_testimony_home-2.mp3',  "You step into the room. Your kids sit on the floor, close to the screen."),
+    ('scene-end_testimony_home-3.mp3',  "Children thrown back by hoses. Dogs lunging. Officers holding the line. Then a flash of you protecting the little girl, fighting off the dog. Ben directing the kids away."),
+    ('scene-end_testimony_home-4.mp3',  '"Dad?" Your youngest daughter looks up, "That\'s you."'),
+    ('scene-end_testimony_home-5.mp3',  "Exhausted, you let yourself fall to your knees. You wrap your arms around her, holding her tight."),
+    ('scene-end_testimony_home-6.mp3',  'HER: "Were you scared?"'),
+    ('scene-end_testimony_home-7.mp3',  'YOU: "Yup. The whole time." Your oldest son walks over, curious.'),
+    ('scene-end_testimony_home-8.mp3',  'HIM: "Then why did you do it?"'),
+    ('scene-end_testimony_home-9.mp3',  "You think about the girl in the yellow dress. The hundreds of children singing, even through everything."),
+    ('scene-end_testimony_home-10.mp3', 'YOU: "Being scared isn\'t an excuse to not do anything\u2026 especially when it\'s hurting innocent people."'),
 
     # ── Straw/water R5 reactions ──────────────────────────────────────────────
     ('reaction-straw_water_r5-a-0.mp3', 'You write, "Equipment malfunction led to loss of control. Actions taken in an attempt to restore order."'),
