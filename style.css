@@ -251,6 +251,30 @@ body.has-scene-bg #scene-bg-layer {
   background: var(--ink-light);
 }
 
+/* Pause button — inverted when audio is paused */
+#pause-btn.is-paused {
+  background: var(--ink);
+  color: var(--paper-white);
+}
+#pause-btn.is-paused svg {
+  stroke: var(--paper-white);
+}
+#pause-btn.is-paused:hover {
+  background: var(--ink-light);
+}
+
+/* Speed button — inverted when above 1× */
+#speed-btn.is-fast {
+  background: var(--ink);
+  color: var(--paper-white);
+}
+#speed-btn.is-fast svg {
+  stroke: var(--paper-white);
+}
+#speed-btn.is-fast:hover {
+  background: var(--ink-light);
+}
+
 /* ─── Typography Utilities ─────────────────────────────────── */
 .heading-distressed {
   font-family: var(--font-heading);

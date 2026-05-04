@@ -69,6 +69,24 @@
     </svg>
     NARRATION
   </button>
+  <button class="btn-persistent narration-control" id="pause-btn" aria-label="Pause narration" aria-pressed="false" style="display:none">
+    <!-- Pause icon (default — narration is playing) -->
+    <svg id="pause-icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <rect x="6" y="5" width="4" height="14"/>
+      <rect x="14" y="5" width="4" height="14"/>
+    </svg>
+    <!-- Play icon (shown when paused) -->
+    <svg id="pause-icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none">
+      <polygon points="6 4 20 12 6 20 6 4"/>
+    </svg>
+    <span id="pause-btn-label">PAUSE</span>
+  </button>
+  <button class="btn-persistent narration-control" id="speed-btn" aria-label="Change narration speed" style="display:none">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M13 2 L4 14 L12 14 L11 22 L20 10 L12 10 Z"/>
+    </svg>
+    <span id="speed-btn-label">1×</span>
+  </button>
 </div>
 
 
@@ -141,17 +159,16 @@
       <h1 class="heading-distressed history-headline">BIRMINGHAM, 1963</h1>
       <p class="history-byline">The city on the edge of history</p>
       <div class="history-columns">
-        <p>Birmingham, Alabama had earned a grim distinction. By the spring of 1963, it was widely regarded as the most thoroughly segregated city in America, a place where racial separation was enforced not only by law but by violence. Black residents were barred from white schools, restaurants, parks, and water fountains. Employment beyond manual labor was effectively closed off. The city's Black neighborhoods had been bombed so many times by white supremacists that one section had been nicknamed "Dynamite Hill."</p>
-        <p>At the center of the city's racial order stood T. Eugene "Bull" Connor, Birmingham's Commissioner of Public Safety. Connor had held the position on and off since 1937, and he wielded it without apology. He authorized police force against protesters, arrested civil rights organizers on a whim, and made no secret of his contempt for anyone who challenged the system. For years, his brutality had worked.</p>
-        <p>But the city had its own resistance. Reverend Fred Shuttlesworth had been fighting Birmingham's segregation laws from within for nearly a decade. As founder of the Alabama Christian Movement for Human Rights, he survived a bomb blast on Christmas Day, 1956, his home destroyed while he slept inside. He walked out of the rubble and told the crowd gathered outside that God had kept him alive for a reason. He kept organizing.</p>
-        <p>In early 1963, Shuttlesworth invited Dr. Martin Luther King Jr. and the Southern Christian Leadership Conference to come to Birmingham. He believed the city's extremism would shock the nation. King accepted. That spring, they launched Project C, Project Confrontation, a campaign of nonviolent direct action: sit-ins, marches, and economic boycotts of segregated downtown businesses. King was arrested on Good Friday, April 12th. From his cell, he wrote the <em>Letter from Birmingham Jail</em>.</p>
-        <p>Project C was struggling. Many Black adults were afraid to march, fearing arrest, job loss, or worse. Then James Bevel, the SCLC's Director of Direct Action, proposed something bold: recruit the children. They had less to lose. They were not afraid. Bevel had been meeting with students across the city, at churches, at schools, training them in nonviolent resistance, telling them they might be arrested. They said yes anyway.</p>
-        <p>On the morning of May 2, 1963, over a thousand children and teenagers slipped out of their schools and made their way to 16th Street Baptist Church. They were singing. They marched out in waves toward downtown Birmingham. Bull Connor's officers were already in position. You are one of them.</p>
+        <p>By spring 1963, Birmingham, Alabama was known as the most segregated city in America. Black residents were excluded from white businesses and jobs beyond manual labor. White supremacist bombings were so frequent that one neighborhood was called "Dynamite Hill."</p>
+        <p>At the center of this system was Commissioner of Public Safety Eugene "Bull" Connor, who used police violence and arrests to suppress protests. For years, it worked.</p>
+        <p>But resistance grew. Reverend Fred Shuttlesworth, founder of the Alabama Christian Movement for Human Rights, had long challenged segregation. In 1963, he invited Dr. Martin Luther King Jr. and the Southern Christian Leadership Conference to Birmingham. Together, they launched Project C (Confrontation), a campaign of nonviolent protests, including marches, sit-ins, and boycotts. King was arrested on April 12 and wrote <em>Letter from Birmingham Jail</em>.</p>
+        <p>Then came a bold idea. James Bevel proposed involving students. Trained in nonviolence and aware of the risks, they agreed.</p>
+        <p>On May 2, 1963, over a thousand children left school and gathered at 16th Street Baptist Church. Singing, they marched toward downtown in waves.</p>
+        <p>Police were waiting. You are one of them.</p>
       </div>
     </div>
 
     <div class="card-footer">
-      <button class="btn-replay btn-replay-inline" id="history-replay-btn" style="display:none" aria-label="Replay narration">↺</button>
       <button class="btn" id="history-continue-btn">CONTINUE</button>
     </div>
 

@@ -108,7 +108,6 @@ function showScreen(screenKey) {
   }
 
   target.scrollTop = 0;
-  if (screenKey === 'history' && narrationOn) setTimeout(narrateHistory, 100);
 }
 
 function showGameView(viewKey) {
@@ -622,6 +621,10 @@ function closeModal(id) { $(id).classList.add('hidden'); }
 // If a file is missing the engine falls back to the browser's speech synthesis.
 let narrationOn   = false;
 let _currentAudio = null;  // fresh Audio() per play — avoids Chrome autoplay blocks
+let narrationPaused = false;
+const SPEED_STEPS = [1, 1.5, 2];
+let speedIndex    = 0;
+function currentSpeed() { return SPEED_STEPS[speedIndex]; }
 
 // Web Speech fallback voice selection
 let _selectedVoice = null;
@@ -642,6 +645,8 @@ function pickVoice() {
 function stopAllAudio() {
   if (_currentAudio) { _currentAudio.pause(); _currentAudio = null; }
   if (window.speechSynthesis) window.speechSynthesis.cancel();
+  narrationPaused = false;
+  updatePauseBtn();
 }
 
 // Web Speech fallback (used when audio file is missing)
@@ -663,22 +668,14 @@ function playBeatAudio(filename, fallbackEl) {
   if (!narrationOn) return;
   stopAllAudio();
   const audio = new Audio(`audio/${filename}`);
+  audio.playbackRate = currentSpeed();
+  audio.addEventListener('ended', () => {
+    if (_currentAudio === audio) { narrationPaused = false; updatePauseBtn(); }
+  });
   _currentAudio = audio;
   audio.play().catch(err => {
     console.warn('Audio play failed:', filename, err.name, err.message);
     speakRaw((fallbackEl.textContent || '').trim().replace(/\s+/g, ' '));
-  });
-}
-
-// Narrate the full history screen using audio/history.mp3
-function narrateHistory() {
-  if (!narrationOn) return;
-  stopAllAudio();
-  const audio = new Audio('audio/history.mp3');
-  _currentAudio = audio;
-  audio.play().catch(() => {
-    const el = document.querySelector('#history-screen .history-columns');
-    if (el) speakRaw((el.textContent || '').trim().replace(/\s+/g, ' '));
   });
 }
 
@@ -692,10 +689,63 @@ function updateNarrationBtn() {
   $('narration-icon-on').style.display  = narrationOn ? ''     : 'none';
   $('narration-icon-off').style.display = narrationOn ? 'none' : '';
   // Show replay buttons only when narration is on
-  ['story-replay-btn', 'reaction-replay-btn', 'history-replay-btn'].forEach(id => {
+  ['story-replay-btn', 'reaction-replay-btn'].forEach(id => {
     const el = $(id);
     if (el) el.style.display = narrationOn ? '' : 'none';
   });
+  // Show pause/speed controls only when narration is on
+  document.querySelectorAll('.narration-control').forEach(el => {
+    el.style.display = narrationOn ? '' : 'none';
+  });
+  updatePauseBtn();
+  updateSpeedBtn();
+}
+
+function updatePauseBtn() {
+  const btn = $('pause-btn');
+  if (!btn) return;
+  btn.classList.toggle('is-paused', narrationPaused);
+  btn.setAttribute('aria-pressed', String(narrationPaused));
+  btn.setAttribute('aria-label', narrationPaused ? 'Resume narration' : 'Pause narration');
+  $('pause-icon-pause').style.display = narrationPaused ? 'none' : '';
+  $('pause-icon-play').style.display  = narrationPaused ? ''     : 'none';
+  $('pause-btn-label').textContent = narrationPaused ? 'PLAY' : 'PAUSE';
+}
+
+function updateSpeedBtn() {
+  const btn = $('speed-btn');
+  if (!btn) return;
+  const s = currentSpeed();
+  btn.classList.toggle('is-fast', s > 1);
+  $('speed-btn-label').textContent = (s % 1 === 0 ? s.toString() : s.toFixed(1)) + '×';
+}
+
+function togglePauseNarration() {
+  if (!narrationOn) return;
+  if (_currentAudio) {
+    if (_currentAudio.paused) {
+      _currentAudio.play().catch(() => {});
+      narrationPaused = false;
+    } else {
+      _currentAudio.pause();
+      narrationPaused = true;
+    }
+  } else if (window.speechSynthesis && window.speechSynthesis.speaking) {
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+      narrationPaused = false;
+    } else {
+      window.speechSynthesis.pause();
+      narrationPaused = true;
+    }
+  }
+  updatePauseBtn();
+}
+
+function cycleNarrationSpeed() {
+  speedIndex = (speedIndex + 1) % SPEED_STEPS.length;
+  if (_currentAudio) _currentAudio.playbackRate = currentSpeed();
+  updateSpeedBtn();
 }
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
@@ -741,8 +791,6 @@ function init() {
         } else if (!$('reaction-view').classList.contains('hidden')) {
           playBeatAudio(`reaction-${reactionChoiceScene}-${reactionChoiceLetter}-${reactionBeatIndex}.mp3`, $('reaction-beat-text'));
         }
-      } else if (!$('history-screen').classList.contains('hidden')) {
-        narrateHistory();
       }
     }
   });
@@ -752,7 +800,10 @@ function init() {
     playBeatAudio(`scene-${state.currentSceneId}-${storyBeatIndex}.mp3`, $('story-beat-text')));
   $('reaction-replay-btn').addEventListener('click', () =>
     playBeatAudio(`reaction-${reactionChoiceScene}-${reactionChoiceLetter}-${reactionBeatIndex}.mp3`, $('reaction-beat-text')));
-  $('history-replay-btn').addEventListener('click', narrateHistory);
+
+  // ── Pause / speed controls ────────────────────────────────
+  $('pause-btn').addEventListener('click', togglePauseNarration);
+  $('speed-btn').addEventListener('click', cycleNarrationSpeed);
 
   // ── Title ──────────────────────────────────────────────────
   $('start-btn').addEventListener('click', () => showScreen('history'));
