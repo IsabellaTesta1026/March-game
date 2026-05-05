@@ -80,7 +80,7 @@ audio/            — narration MP3 files
 
 ## Credits
 
-Created by Isabella Testa and Juliana Testa.
+Created by Isabella Testa and Gia Kim.
 
 Historical photographs courtesy of the Bob Adelman Estate, Getty Images, Wikimedia Commons, and the Museum of Fine Arts Houston.
 
